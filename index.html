@@ -295,6 +295,14 @@ openssl req -new -key &lt;keyfile> -out &lt;csrfile>
 openssl x509 -req -days 3650 -in &lt;csrfile> -inkey &lt;keyfile> -out bg.crt \
         [-extfile &lt;extensions]
             </code></pre>
+            <p>
+                Extensions file (valid values described at <a href="https://www.openssl.org/docs/apps/x509v3_config.html">https://www.openssl.org/docs/apps/x509v3_config.html</a>):
+            </p>
+            <pre><code>basicConstraints=CA:FALSE
+keyUsage=digitalSignature,keyCertSign
+extendedKeyUsage=serverAuth,clientAuth
+authorityKeyIdentifier=keyid,issuer
+subjectAltName=URI:bridgegatetest.com,URI:*.bridgegatetest.com</code></pre>
         </div>
     </section>
 </section>
