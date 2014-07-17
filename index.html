@@ -255,6 +255,7 @@ BgNVBAoTEUdvRGFkZHkuY29tLCBJbmMuMS0wKwYDVQQLEyRodHRwOi8vY2VydHMu
     </section>
 </section>
 <section>
+    <section>
     <h4>Cheat Sheet</h4>
 
     <div class="fragment">
@@ -263,20 +264,39 @@ BgNVBAoTEUdvRGFkZHkuY29tLCBJbmMuMS0wKwYDVQQLEyRodHRwOi8vY2VydHMu
     </div>
     <div class="fragment">
         <p>Import a certificate to a keystore</p>
-                      <pre><code lang="sh">keytool -importcert -keystore &lt;filename> -file &lt;public cert filename&gt;
-                          \
-                          [-alias &lt;alias&gt;]</code></pre>
+        <pre><code lang="sh">keytool -importcert -keystore &lt;filename> -file &lt;public cert filename&gt; \
+    [-alias &lt;alias&gt;]</code></pre>
     </div>
     <div class="fragment">
         <p>Import a public/private key pair to a keystore</p>
                       <pre><code lang="bash">
-                          openssl pkcs12 -in &lt;certificate&gt; -inkey &lt;key&gt; -export -out &lt;keystore.p12&gt;
-                          keytool -importkeystore -srckeystore &lt;keystore.p12&gt; -srcstoretype pkcs12 \
-                          -destkeystore &lt;keystore.jks&gt; -srcalias &lt;p12 alias&gt; \
-                          -destalias &lt;jks alias&gt;
-                      </code></pre>
+openssl pkcs12 -in &lt;certificate&gt; -inkey &lt;key&gt; -export -out &lt;keystore.p12&gt;
+
+keytool -importkeystore -srckeystore &lt;keystore.p12&gt; -srcstoretype pkcs12 \
+    -destkeystore &lt;keystore.jks&gt; -srcalias &lt;p12 alias&gt; \
+    -destalias &lt;jks alias&gt;
+</code></pre>
     </div>
 
+    </section>
+    <section>
+    <h4>Cheat Sheet</h4>
+
+    <div class="fragment">
+        <p>Generate a self-signed certificate</p>
+        <pre><code>keytool -keysize 2048 -genkey -alias &lt;alias> -keyalg RSA -keystore &lt;keystore.jks>
+</code></pre>
+    </div>
+        <div class="fragment">
+            <p>Generate a self-signed certificate with v3 extensions</p>
+            <pre><code>
+openssl -genrsa -des3 -out &lt;keyfile> 2048
+openssl req -new -key &lt;keyfile> -out &lt;csrfile>
+openssl x509 -req -days 3650 -in &lt;csrfile> -inkey &lt;keyfile> -out bg.crt \
+        [-extfile &lt;extensions]
+            </code></pre>
+        </div>
+    </section>
 </section>
 <section>
     <h1>?</h1>
