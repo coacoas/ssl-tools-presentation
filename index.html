@@ -1,27 +1,28 @@
 <!doctype html>
 <html lang="en">
 
-	<head>
-		<meta charset="utf-8">
+<head>
+    <meta charset="utf-8">
 
-		<title>reveal.js - The HTML Presentation Framework</title>
+    <title>reveal.js - The HTML Presentation Framework</title>
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
 
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="css/reveal.min.css">
-		<link rel="stylesheet" href="css/theme/sky.css" id="theme">
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/sky.css" id="theme">
 
-		<!-- For syntax highlighting -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/presentation.css">
 
-		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
-		<script>
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
 			if( window.location.search.match( /print-pdf/gi ) ) {
 				var link = document.createElement( 'link' );
 				link.rel = 'stylesheet';
@@ -29,237 +30,156 @@
 				link.href = 'css/print/pdf.css';
 				document.getElementsByTagName( 'head' )[0].appendChild( link );
 			}
-		</script>
 
-		<!--[if lt IE 9]>
-		<script src="lib/js/html5shiv.js"></script>
-		<![endif]-->
-	</head>
 
-	<body>
-        <style>
-            span.message, span.key {
-                font-family: monospace;
-                font-size: 150%;
-                padding: 5px;
-                border: 2px;
-            }
-            div.left, div.right {
-                width: 50%;
-                float: left;
-            }
+    </script>
 
-            dl {
-                margin-bottom:50px;
-            }
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
 
-            dl dt {
-                font-weight:bold;
-                margin-right:10px;
-                padding:5px;
-                width:50%;
-            }
+<body>
 
-            dl.asym dt {
-                float: left;
-                margin-left: 100px;
-                width: 40%;
-                text-align: left;
-            }
+<div class="reveal">
+<div class="slides">
+<section>
+    <h1>HTTPS &amp; SSL</h1>
 
-            dl.asym dd {
-                text-align: left;
-            }
+    <h3>What it is, how it works, and how to configure this godforsaken technology</h3>
+</section>
+<section>
+    <section>
+        <h2>Encryption</h2>
+    </section>
+    <section>
+        <h2>Symmetric Encryption</h2>
 
-            dl dd {
-                margin:2px 0;
-                padding:5px 0;
-            }
+        <div>
+            <dl>
+                <div class="fragment">
+                    <dt>Message:</dt>
+                    <dd><span class="message">HELLO</span></dd>
+                </div>
+                <div class="fragment">
+                    <dt>Key:</dt>
+                    <dd><span class="message">AUJTK</span></dd>
+                </div>
+                <div class="fragment">
+                    <dt>Ciphertext:</dt>
+                    <dd><span class="message">IZVFZ</span></dd>
+                </div>
+            </dl>
+        </div>
+        <p></p>
 
-            table.dictionary {
-                border: 1px;
-                border-style: solid;
-            }
+        <p class="fragment">
+            The key is shared between all parties.
+        </p>
 
-            table.dictionary td {
-                padding: 5px;
-                font-size: 90%;
-                border-bottom: 1px;
-                border-color: black;
-                border-style: solid;
-            }
+        <p class="fragment">
+            Encryption and decryption is <i>very</i> fast.
+        </p>
+    </section>
+    <section>
+        <h2>Asymmetric Encryption</h2>
 
-            div.user {
-                height: auto;
-                width: 120px;
-                float: left;
-                vertical-align: center;
-           }
+        <div>
+            <dl class="asym">
+                <dt>Public Certificate</dt>
+                <dd>Encrypts data</dd>
 
-            div.comms {
-                float: left;
-                border: 2px;
-                width: 715px;
-            }
+                <dt>Private Key</dt>
+                <dd>Decrypts data</dd>
+            </dl>
+        </div>
+        <div class="fragment">
+            <hr>
+            Anyone can have the public certificate. Only the private key can decrypt data.
+        </div>
+        <div class="fragment">
+            <p>
+                <small>I am <i>not</i> going into the math on this one.</small>
+            </p>
+        </div>
+        <div class="fragment">
+            <p>
+                <small></small>
+            </p>
+            So, how does it work?
+        </div>
+    </section>
+    <section>
+        <h2>HTTPS Handshake</h2>
 
-            div.server {
-                float: right;
-                width: 120px;
-                height: 400px;
-                vertical-align: center;
-            }
+        <div>
+            <div class="user">
+                <img width="200px" src="images/web-user.png" alt="Web User">
+            </div>
+            <div class="comms">
+                <div class="fragment">
+                    <p class="request">Secure HTTPS request made
+                        <img align="center" src="images/right-arrow.png" alt=""></p>
+                </div>
+                <div class="fragment">
+                    <p class="response">Sends Certificate
+                        <img align="center" src="images/left-arrow.png" alt=""></p>
+                </div>
+                <div class="fragment">
+                    <p class="request">
+                        Client autnenticates certificate against trusted certificates
+                    </p>
+                </div>
+                <div class="fragment">
+                    <p class="request">Acknowledge Certificate, provide encrypted shared key
+                        <img align="center" src="images/right-arrow.png" alt=""></p>
+                </div>
+                <div class="fragment">
+                    <p class="response">
+                        Data continues being sent, using the symmetric key for encryptions
+                        <img align="center" src="images/left-arrow.png" alt="">
+                    </p>
+                </div>
+            </div>
+            <div class="server">
+                <img align="right" width="200px" src="images/web-server.png" alt="Web User">
+            </div>
+        </div>
+    </section>
+</section>
+<section>
+    <section>
+        <h3>Vocabulary</h3>
+        <table class="dictionary">
+            <tr>
+                <td>Certificate</td>
+                <td>Used for encryption and identity verification</td>
+            </tr>
+            <tr>
+                <td>Private Key</td>
+                <td>Used to decrypt values encrypted using the matching public certificate. Generated by the requesting
+                    entity.
+                </td>
+            </tr>
+            <tr>
+                <td>Certificate Signing Request (CSR)</td>
+                <td>Used to request a signed certificate from a Certificate Authority (CA)</td>
+            </tr>
+            <tr>
+                <td>Certificate Authority</td>
+                <td>A trusted vendor that issues digital certificates.</td>
+            </tr>
+            <tr>
+                <td>Self-signed Certificate</td>
+                <td>A certificate not signed by a Certificate Authority. Used mostly for development.</td>
+            </tr>
+        </table>
+    </section>
+    <section>
+        <h3>Certificate Formats</h3>
 
-            p.request, p.response {
-                font-size: large;
-            }
-            p.request {
-                text-align: left;
-            }
-
-            p.response {
-                text-align: right;
-            }
-
-            p.request img {
-                width: 710px;
-            }
-
-            p.response img {
-                width: 710px;
-            }
-
-            .reveal section img {
-                border: 0px;
-            }
-
-        </style>
-
-		<div class="reveal">
-            <div class="slides">
-                <section>
-                    <h1>HTTPS &amp; SSL</h1>
-                    <h3>What it is, how it works, and how to configure this godforsaken technology</h3>
-                </section>
-                <section>
-                    <section>
-                        <h2>Encryption</h2>
-                    </section>
-                    <section>
-                        <h2>Symmetric Encryption</h2>
-                        <div>
-                            <dl>
-                                <div class="fragment">
-                                <dt>Message:</dt>
-                                <dd><span class="message">HELLO</span></dd>
-                                </div>
-                                <div class="fragment">
-                                <dt>Key:</dt>
-                                <dd><span class="message">AUJTK</span></dd>
-                                </div>
-                                <div class="fragment">
-                                <dt>Ciphertext:</dt>
-                                <dd><span class="message">IZVFZ</span></dd>
-                                </div>
-                            </dl>
-                        </div>
-                        <p></p>
-                            <p class="fragment">
-                                The key is shared between all parties.
-                            </p>
-                            <p class="fragment">
-                                Encryption and decryption is <i>very</i> fast.
-                            </p>
-                    </section>
-                    <section>
-                        <h2>Asymmetric Encryption</h2>
-                        <div>
-                            <dl class="asym">
-                                <dt>Public Certificate</dt>
-                                <dd>Encrypts data</dd>
-
-                                <dt>Private Key</dt>
-                                <dd>Decrypts data</dd>
-                            </dl>
-                        </div>
-                        <div class="fragment">
-                            <hr>
-                            Anyone can have the public certificate. Only the private key can decrypt data.
-                        </div>
-                        <div class="fragment">
-                            <p><small>I am <i>not</i> going into the math on this one.</small></p>
-                        </div>
-                        <div class="fragment">
-                            <p><small></small></p>
-                            So, how does it work?
-                        </div>
-                     </section>
-                    <section>
-                        <h2>HTTPS Handshake</h2>
-                        <div>
-                            <div class="user">
-                                <img width="200px" src="images/web-user.png" alt="Web User">
-                            </div>
-                            <div class="comms">
-                                <div class="fragment">
-                                    <p class="request">Secure HTTPS request made
-                                    <img align="center" src="images/right-arrow.png" alt=""></p>
-                                </div>
-                                <div class="fragment">
-                                    <p class="response">Sends Certificate
-                                    <img align="center" src="images/left-arrow.png" alt=""></p>
-                                </div>
-                                <div class="fragment">
-                                    <p class="request">
-                                        Client autnenticates certificate against trusted certificates
-                                    </p>
-                                </div>
-                                <div class="fragment">
-                                    <p class="request">Acknowledge Certificate, provide encrypted shared key
-                                    <img align="center" src="images/right-arrow.png" alt=""></p>
-                                </div>
-                                <div class="fragment">
-                                    <p class="response">
-                                        Data continues being sent, using the symmetric key for encryptions
-                                        <img align="center" src="images/left-arrow.png" alt="">
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="server">
-                                <img align="right" width="200px" src="images/web-server.png" alt="Web User">
-                            </div>
-                        </div>
-                    </section>
-                </section>
-                <section>
-                    <section>
-                        <h3>Vocabulary</h3>
-                        <table class="dictionary">
-                            <tr>
-                                <td>Certificate</td>
-                                <td>Used for encryption and identity verification</td>
-                            </tr>
-                            <tr>
-                                <td>Private Key</td>
-                                <td>Used to decrypt values encrypted using the matching public certificate. Generated by the requesting entity.</td>
-                            </tr>
-                            <tr>
-                                <td>Certificate Signing Request (CSR)</td>
-                                <td>Used to request a signed certificate from a Certificate Authority (CA)</td>
-                            </tr>
-                            <tr>
-                                <td>Certificate Authority</td>
-                                <td>A trusted vendor that issues digital certificates.</td>
-                            </tr>
-                            <tr>
-                                <td>Self-signed Certificate</td>
-                                <td>A certificate not signed by a Certificate Authority.  Used mostly for development.</td>
-                            </tr>
-                        </table>
-                    </section>
-                    <section>
-                        <h3>Certificate Formats</h3>
-                        <div class="fragment">
-                            <h5>PEM</h5>
+        <div class="fragment">
+            <h5>PEM</h5>
                             <pre><code>
 -----BEGIN CERTIFICATE-----
 MIIFOzCCBCOgAwIBAgIHTqhITt5W5TANBgkqhkiG9w0BAQsFADCBtDELMAkGA1UE
@@ -269,88 +189,105 @@ BgNVBAoTEUdvRGFkZHkuY29tLCBJbmMuMS0wKwYDVQQLEyRodHRwOi8vY2VydHMu
 85sKysdk4OjNmeXGIauzQ60f0vUHNrTDToz3lOrybHcgOKPiguCJV4IVpKAr7vCq
 5QyvPlRodJUCajhZISW3RmoFcBOQQInFv2qFXDpRIGmQUFIHiRBC0r2f5UP5a48=
 -----END CERTIFICATE-----
-
                             </code></pre>
-                        </div>
-                        <div class="fragment">
-                            <h5>DER</h5>
-                            <p><small>Binary formatted data</small></p>
-                        </div>
-                    </section>
-                    <section>
-                        <h3>Certificate Formats</h3>
-                        <div class="fragment">
-                            <h5>CRT</h5>
-                            <p><small>Encoding for public certificates. Can be either DER or PEM format. Most commonly seen in *nix systems.</small> </p>
-                        </div>
-                        <div class="fragment">
-                            <h5>CER</h5>
-                            <p><small>Practically synonymous with CER. Most commonly seen in Windows systems.</small> </p>
-                        </div>
-                        <div class="fragment">
-                            <h5>KEY</h5>
-                            <p><small>Typically used for private keys (PKCS#8). Can be either DER or PEM.</small> </p>
-                        </div>
-                    </section>
-                </section>
-                <section>
-                    <section>
-                        <h1>
-                            Tools
-                        </h1>
-                    </section>
-                    <section>
-                        <h2>openssl</h2>
-                        <ul>
-                            <li>Used to generate certificates, keys, CSR</li>
-                            <li>Details at <a href="http://www.openssl.org">http://www.openssl.org</a></li>
-                            <li>Windows binaries can be found at <a href="http://slproweb.com/products/Win32OpenSSL.html">http://slproweb.com/products/Win32OpenSSL.html</a></li>
-                        </ul>
-                    </section>
-                    <section>
-                        <h2>keytool</h2>
-                        <ul>
-                            <li>Used to work with Java Keystores</li>
-                            <li>Distributed as part of the Java Runtime Environment</li>
-                            <li>Available in \bridgegate\java\bin</li>
-                        </ul>
-                    </section>
-                    <section>
-                    <h3>Let's take a look</h3>
-                    </section>
-                </section>
-                <section>
-                    <h4>Cheat Sheet</h4>
-                    <div class="fragment">
-                      <p>Convert from DER to PEM</p>
-                      <pre><code lang="sh">openssl x509 -in &lt;file&gt; -inform DER -out &lt;target&gt; -outform PEM</code></pre>
-                    </div>
-                    <div class="fragment">
-                      <p>Import a certificate to a keystore</p>
-                      <pre><code lang="sh">keytool -importcert -keystore &lt;filename> -file &lt;public cert filename&gt; \
-        [-alias &lt;alias&gt;]</code></pre>
-                    </div>
-                    <div class="fragment">
-                      <p>Import a public/private key pair to a keystore</p>
+        </div>
+        <div class="fragment">
+            <h5>DER</h5>
+
+            <p>
+                <small>Binary formatted data</small>
+            </p>
+        </div>
+    </section>
+    <section>
+        <h3>Certificate Formats</h3>
+
+        <div class="fragment">
+            <h5>CRT</h5>
+
+            <p>
+                <small>Encoding for public certificates. Can be either DER or PEM format. Most commonly seen in *nix
+                    systems.
+                </small>
+            </p>
+        </div>
+        <div class="fragment">
+            <h5>CER</h5>
+
+            <p>
+                <small>Practically synonymous with CER. Most commonly seen in Windows systems.</small>
+            </p>
+        </div>
+        <div class="fragment">
+            <h5>KEY</h5>
+
+            <p>
+                <small>Typically used for private keys (PKCS#8). Can be either DER or PEM.</small>
+            </p>
+        </div>
+    </section>
+</section>
+<section>
+    <section>
+        <h1>
+            Tools
+        </h1>
+    </section>
+    <section>
+        <h2>openssl</h2>
+        <ul>
+            <li>Used to generate certificates, keys, CSR</li>
+            <li>Details at <a href="http://www.openssl.org">http://www.openssl.org</a></li>
+            <li>Windows binaries can be found at <a href="http://slproweb.com/products/Win32OpenSSL.html">http://slproweb.com/products/Win32OpenSSL.html</a>
+            </li>
+        </ul>
+    </section>
+    <section>
+        <h2>keytool</h2>
+        <ul>
+            <li>Used to work with Java Keystores</li>
+            <li>Distributed as part of the Java Runtime Environment</li>
+            <li>Available in \bridgegate\java\bin</li>
+        </ul>
+    </section>
+    <section>
+        <h3>Let's take a look</h3>
+    </section>
+</section>
+<section>
+    <h4>Cheat Sheet</h4>
+
+    <div class="fragment">
+        <p>Convert from DER to PEM</p>
+        <pre><code lang="sh">openssl x509 -in &lt;file&gt; -inform DER -out &lt;target&gt; -outform PEM</code></pre>
+    </div>
+    <div class="fragment">
+        <p>Import a certificate to a keystore</p>
+                      <pre><code lang="sh">keytool -importcert -keystore &lt;filename> -file &lt;public cert filename&gt;
+                          \
+                          [-alias &lt;alias&gt;]</code></pre>
+    </div>
+    <div class="fragment">
+        <p>Import a public/private key pair to a keystore</p>
                       <pre><code lang="bash">
-openssl pkcs12 -in &lt;certificate&gt; -inkey &lt;key&gt; -export -out &lt;keystore.p12&gt;
-keytool -importkeystore -srckeystore &lt;keystore.p12&gt; -srcstoretype pkcs12 \
-        -destkeystore &lt;keystore.jks&gt; -srcalias &lt;p12 alias&gt; \
-        -destalias &lt;jks alias&gt;
-</code></pre>
-                    </div>
+                          openssl pkcs12 -in &lt;certificate&gt; -inkey &lt;key&gt; -export -out &lt;keystore.p12&gt;
+                          keytool -importkeystore -srckeystore &lt;keystore.p12&gt; -srcstoretype pkcs12 \
+                          -destkeystore &lt;keystore.jks&gt; -srcalias &lt;p12 alias&gt; \
+                          -destalias &lt;jks alias&gt;
+                      </code></pre>
+    </div>
 
-                </section>
-                <section>
-                    <h1>?</h1>
-                </section>
-            </div>
-		</div>
+</section>
+<section>
+    <h1>?</h1>
+</section>
+</div>
+</div>
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.min.js"></script>
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
 
-		<script>
+<script>
 
 			// Full list of configuration options available here:
 			// https://github.com/hakimel/reveal.js#configuration
@@ -378,7 +315,9 @@ keytool -importkeystore -srckeystore &lt;keystore.p12&gt; -srcstoretype pkcs12 \
 				]
 			});
 
-		</script>
 
-	</body>
+
+</script>
+
+</body>
 </html>

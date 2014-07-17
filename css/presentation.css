@@ -1,0 +1,93 @@
+    span.message, span.key {
+    font-family: monospace;
+    font-size: 150%;
+    padding: 5px;
+    border: 2px;
+    }
+    div.left, div.right {
+    width: 50%;
+    float: left;
+    }
+
+    dl {
+    margin-bottom:50px;
+    }
+
+    dl dt {
+    font-weight:bold;
+    margin-right:10px;
+    padding:5px;
+    width:50%;
+    }
+
+    dl.asym dt {
+    float: left;
+    margin-left: 100px;
+    width: 40%;
+    text-align: left;
+    }
+
+    dl.asym dd {
+    text-align: left;
+    }
+
+    dl dd {
+    margin:2px 0;
+    padding:5px 0;
+    }
+
+    table.dictionary {
+    border: 1px;
+    border-style: solid;
+    }
+
+    table.dictionary td {
+    padding: 5px;
+    font-size: 90%;
+    border-bottom: 1px;
+    border-color: black;
+    border-style: solid;
+    }
+
+    div.user {
+    height: auto;
+    width: 120px;
+    float: left;
+    vertical-align: center;
+    }
+
+    div.comms {
+    float: left;
+    border: 2px;
+    width: 715px;
+    }
+
+    div.server {
+    float: right;
+    width: 120px;
+    height: 400px;
+    vertical-align: center;
+    }
+
+    p.request, p.response {
+    font-size: large;
+    }
+    p.request {
+    text-align: left;
+    }
+
+    p.response {
+    text-align: right;
+    }
+
+    p.request img {
+    width: 710px;
+    }
+
+    p.response img {
+    width: 710px;
+    }
+
+    .reveal section img {
+    border: 0px;
+    }
